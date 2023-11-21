@@ -1,0 +1,11 @@
+/* styles.css */
+/*For the dynamically loaded DOM elements,
+Hide 
+*/
+.bili-feed4-layout,
+.left-entry,
+.bili-header__banner,
+.bili-header__channel,
+.header-channel{
+  display: none !important;
+}

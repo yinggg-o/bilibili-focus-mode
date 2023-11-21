@@ -16,7 +16,6 @@
         "service_worker":"background.js"
     },
     "action": {
-      "default_popup": "popup.html",
       "default_icon": {
         "16": "images/icon16.png",
         "48": "images/icon48.png",
@@ -25,8 +24,13 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://www.bilibili.com/*"],
-        "js": ["content.js"]
+        "matches": [
+            "https://www.bilibili.com/*",
+            "https://www.bilibili.com/video/*"
+        ],
+        "js": ["content.js"],
+        "css":["dropdown_banner.css"],
+        "run_at": "document_start"
       }
     ]
   }
