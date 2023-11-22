@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Bilibili Unhooked",
     "version": "1.0",
-    "description": "Hide parts of bilibili that are unneeded/addictive:recommendations,related videos,comments",
+    "description": "一键屏蔽B站所有推荐、热门、广告内容，方便考公考研党沉迷学习使用",
     "permissions": [
         "storage",
         "tabs",
@@ -25,8 +25,7 @@
       {
         "matches": ["*://*.bilibili.com/*"],
         "js": ["content.js"],
-        "css":["homepage.css"],
-        "html": ["custom_homepage.html"] ,
+        "css":["style.css"],
         "run_at": "document_start"
       }
     ]

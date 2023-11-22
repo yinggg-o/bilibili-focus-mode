@@ -1,49 +1,42 @@
-/* styles.css */
-/*For the dynamically loaded DOM elements,
-Hide 
-*/
-/* 
-.bili-feed4-layout,
-.left-entry,
-.bili-header__channel,
-.animated-banner,
-.header-banner__inner,
-.taper-line,
-.slide_ad,
-.reco_lis,
-.right-bottom-banner,
-aside >:right,
-.header-channel{
-  display: none !important;
-} 
-*/
-
-body[data-page-url="https://www.bilibili.com/"] .bili-feed4-layout {
-  display: none !important;
+/* Common styles for multiple pages */
+body[data-page-url*="https://www.bilibili.com/"],
+body[data-page-url*="https://search.bilibili.com/"],
+body[data-page-url*="https://message.bilibili.com/"],
+body[data-page-url*="https://t.bilibili.com/"],
+body[data-page-url*="https://www.bilibili.com/video/"],
+body[data-page-url*="https://www.bilibili.com/account/history"],
+body[data-page-url*="https://space.bilibili.com/"] {
+  .left-entry,
+  .vip-wrap,
+  .trending,
+  .v_tag,
+  .comment,
+  .tag-panel,
+  .slide_ad,
+  .rec-list,
+  .rec-footer,
+  .right-bottom-banner,
+  .vcd,
+  .ad-report.ad-floor-exp,
+  .pop-live-small-mode.part-undefined,
+  .pl__info,
+  .bili-feed4-layout,
+  .bili-header__channel,
+  .header-channel,
+  .header-banner__inner,
+  .bili-header__banner,
+  .buttons.not-gray,
+  .bili-dyn-sidebar,
+  .bili-dyn-banner,
+  .activity-game-list-wrap,
+  .right {
+    display: none !important;
+  }
 }
 
-body[data-page-url="https://www.bilibili.com/"] .left-entry {
-  display: none !important;
+/* Page-specific styles */
+body[data-page-url*="https://www.bilibili.com/"] .animated-banner {
+  opacity: 0;
+  transition: opacity 1s ease; /* Adjust the duration as needed */
 }
 
-body[data-page-url="https://www.bilibili.com/"] .bili-header__channel {
-  display: none !important;
-}
-
-body[data-page-url="https://www.bilibili.com/"] .header-channel {
-  display: none !important;
-}
-
-body[data-page-url="https://www.bilibili.com/"] .trending {
-  display: none !important;
-}
-
-body[data-page-url="https://www.bilibili.com/"] .history {
-  display: none !important;
-}
-
-body[data-page-url="https://www.bilibili.com/"] .animated-banner {
-  animation: none !important;
-  transition: none !important;
-  display: none !important;
-}

@@ -1,56 +1,91 @@
 // content.js
 
-console.log('Content script executed!');
-
-// Add a style to hide the body by default
-var style = document.createElement('style');
-style.textContent = 'body { display: none !important; }';
-document.head.appendChild(style);
-
-
 function hideIrrelevantElements() {
   // Get the current URL
   var currentUrl = window.location.href;
 
   // Define fixed URLs for different pages
-  var pageMappings = {
-    'https://www.bilibili.com/': [
-      // Homepage selectors
-      '.animated-banner'
-    ],
-    'https://search.bilibili.com/': [
-      '.brand-ad-list.search-all-list',
-      // Add more selectors for the search result page as needed
-    ],
-    'https://www.bilibili.com/video/': [  
-      '.rec_list',
-      '.rec-footer',
-      // Add more selectors for the video watch page as needed
-    ],
-    'https://t.bilibili.com/': [
+  var homepageUrl = 'https://www.bilibili.com/';
+  var videoWatchPageUrl = 'https://www.bilibili.com/video/';
+  var searchPageUrl = 'https://search.bilibili.com/';
+  var memberPageUrl = 'https://t.bilibili.com/';
+  var spacePageUrl = 'https://space.bilibili.com/';
+  var messagePageUrl = 'https://message.bilibili.com/';
+  var historyPageUrl='https://www.bilibili.com/account/history';
+
+  // Check the current URL and apply specific styles accordingly
+  if (currentUrl === homepageUrl) {
+    document.body.setAttribute('data-page-url', homepageUrl);
+    // Apply styles for the homepage
+    var homepageSelectors = [
+      // '.sidebar-homepage',
+      // '.homepage-related-element'
+    ];
+
+    hideElements(homepageSelectors);
+  } else if (currentUrl.startsWith(videoWatchPageUrl)) {
+    document.body.setAttribute('data-page-url', videoWatchPageUrl);
+    // Apply styles for the video watch page
+    var videoWatchPageSelectors = [
+      '.slide-ad-cards',
+      '.reco-list'
+    ];
+
+    hideElements(videoWatchPageSelectors);
+  } else if (currentUrl.startsWith(searchPageUrl)) {
+    document.body.setAttribute('data-page-url', searchPageUrl);
+    // Apply styles for the member page
+    var searchPageSelectors = [
+      '.sidebar-member-page',
+      '.slide-ads'    
+    ];
+
+    hideElements(searchPageSelectors);
+  } else if (currentUrl.startsWith(memberPageUrl)) {
+
+    document.body.setAttribute('data-page-url', memberPageUrl);
+    // Apply styles for the livestream page
+    var memberPageSelectors = [
+      '.livestreammer-info',
+      '.slide-ads'
+    ];
+
+    hideElements(memberPageSelectors);
+  }else if (currentUrl.startsWith(spacePageUrl)) {
+
+    document.body.setAttribute('data-page-url', spacePageUrl);
+    // Apply styles for the livestream page
+    var spacePageSelectors = [
+      '.sidebar',
+      '.reco-list',
+    ];
+
+    hideElements(spacePageSelectors);
+  // Add more conditions for other pages as needed
+  }else if (currentUrl.startsWith(messagePageUrl)) {
+
+    document.body.setAttribute('data-page-url', messagePageUrl);
+    // Apply styles for the livestream page
+    var messagePageSelectors = [
+      '.message-sidebar',
+     
+    ];
+    hideElements(messagePageSelectors);
+  // Add more conditions for other pages as needed
+  }else if (currentUrl.startsWith(historyPageUrl)) {
+
+    document.body.setAttribute('data-page-url', historyPageUrl);
+    // Apply styles for the livestream page
+    var historyPageSelectors = [
       '.livestream-sidebar',
-      // Add more selectors for the member page as needed
-    ],
-    'https://space.bilibili.com/': [
-      // Add selectors for the space page as needed
-    ],
-    'https://www.bilibili.com/account/': [
-      // Add selectors for the history page as needed
-    ],
-    // Add more URLs and selectors as needed
-  };
-
-  // Check if the current URL is in the mapping
-  if (currentUrl in pageMappings) {
-    // Set data-page-url attribute for the current page
-    document.body.setAttribute('data-page-url', currentUrl);
-    // Apply styles for the current page
-    hideElements(pageMappings[currentUrl]);
-
-    // Show the body after hiding irrelevant elements
-    document.body.style.display = 'block';
+      // Add more selectors for the livestream page as needed
+    ];
+    hideElements(historyPageSelectors);
+  // Add more conditions for other pages as needed
   }
 }
+
+
 
 function hideElements(selectors) {
   // Hide elements based on provided selectors
@@ -58,11 +93,10 @@ function hideElements(selectors) {
     var elements = document.querySelectorAll(selector);
     elements.forEach(element => {
       element.style.display = 'none';
-      element.style.opacity = '0';
+
     });
   });
 }
-
 
 // Run the function when the DOM is ready
 if (document.readyState === 'loading') {
