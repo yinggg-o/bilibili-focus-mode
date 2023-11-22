@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Bilibi Focus Mode",
     "version": "1.0",
-    "description": "一键屏蔽B站所有推荐、热门、广告内容，方便考公考研党沉迷学习使用",
+    "description": "B站防沉迷插件，一键屏蔽B站所有推荐、热门、广告内容，方便考公考研党专心学习",
     "permissions": [
         "storage",
         "tabs",
@@ -11,9 +11,6 @@
     "host_permissions":[
         "https://www.bilibili.com/*",
         "https://www.bilibili.com/video/*"],
-    "background":{
-        "service_worker":"background.js"
-    },
     "action": {
       "default_icon": {
         "16": "images/icon16.png",
