@@ -23,12 +23,10 @@
     },
     "content_scripts": [
       {
-        "matches": [
-          "*://*.bilibili.com/*",
-          "https://www.bilibili.com/video/*"
-        ],
+        "matches": ["*://*.bilibili.com/*"],
         "js": ["content.js"],
-        "css":["style.css"],
+        "css":["homepage.css"],
+        "html": ["custom_homepage.html"] ,
         "run_at": "document_start"
       }
     ]

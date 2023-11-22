@@ -1,65 +1,54 @@
 // content.js
 
+console.log('Content script executed!');
+
+// Add a style to hide the body by default
+var style = document.createElement('style');
+style.textContent = 'body { display: none !important; }';
+document.head.appendChild(style);
+
+
 function hideIrrelevantElements() {
   // Get the current URL
   var currentUrl = window.location.href;
 
   // Define fixed URLs for different pages
-  var homepageUrl = 'https://www.bilibili.com/';
-  var videoWatchPageUrl = 'https://www.bilibili.com/video/';
-  var memberPageUrl = 'https://member.bilibili.com/';
-  var livestreamPageUrl = 'https://live.bilibili.com/';
-
-  // Check the current URL and apply specific styles accordingly
-  if (currentUrl === homepageUrl) {
-    // Set data-page-url attribute for the homepage
-    document.body.setAttribute('data-page-url', homepageUrl);
-
-    // Apply styles for the homepage
-    var homepageSelectors = [
-      '.animated-banner',
-      '.bili-feed4-layout',
-      // Add more selectors for the homepage as needed
-    ];
-
-    hideElements(homepageSelectors);
-  } else if (currentUrl.startsWith(videoWatchPageUrl)) {
-    // Set data-page-url attribute for the video watch page
-    document.body.setAttribute('data-page-url', videoWatchPageUrl);
-
-    // Apply styles for the video watch page
-    var videoWatchPageSelectors = [
-      '.video-player',
-      '.related-videos'
+  var pageMappings = {
+    'https://www.bilibili.com/': [
+      // Homepage selectors
+      '.animated-banner'
+    ],
+    'https://search.bilibili.com/': [
+      '.brand-ad-list.search-all-list',
+      // Add more selectors for the search result page as needed
+    ],
+    'https://www.bilibili.com/video/': [  
+      '.rec_list',
+      '.rec-footer',
       // Add more selectors for the video watch page as needed
-    ];
-
-    hideElements(videoWatchPageSelectors);
-  } else if (currentUrl.startsWith(memberPageUrl)) {
-    // Set data-page-url attribute for the member page
-    document.body.setAttribute('data-page-url', memberPageUrl);
-
-    // Apply styles for the member page
-    var memberPageSelectors = [
-      '.sidebar-member-page',
-      '#profile-section',
-      '.member-related-element'
-      // Add more selectors for the member page as needed
-    ];
-
-    hideElements(memberPageSelectors);
-  } else if (currentUrl.startsWith(livestreamPageUrl)) {
-    // Set data-page-url attribute for the livestream page
-    document.body.setAttribute('data-page-url', livestreamPageUrl);
-
-    // Apply styles for the livestream page
-    var livestreamPageSelectors = [
+    ],
+    'https://t.bilibili.com/': [
       '.livestream-sidebar',
-      '.livestream-related-element'
-      // Add more selectors for the livestream page as needed
-    ];
+      // Add more selectors for the member page as needed
+    ],
+    'https://space.bilibili.com/': [
+      // Add selectors for the space page as needed
+    ],
+    'https://www.bilibili.com/account/': [
+      // Add selectors for the history page as needed
+    ],
+    // Add more URLs and selectors as needed
+  };
 
-    hideElements(livestreamPageSelectors);
+  // Check if the current URL is in the mapping
+  if (currentUrl in pageMappings) {
+    // Set data-page-url attribute for the current page
+    document.body.setAttribute('data-page-url', currentUrl);
+    // Apply styles for the current page
+    hideElements(pageMappings[currentUrl]);
+
+    // Show the body after hiding irrelevant elements
+    document.body.style.display = 'block';
   }
 }
 
@@ -69,7 +58,15 @@ function hideElements(selectors) {
     var elements = document.querySelectorAll(selector);
     elements.forEach(element => {
       element.style.display = 'none';
+      element.style.opacity = '0';
     });
   });
 }
 
+
+// Run the function when the DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', hideIrrelevantElements);
+} else {
+  hideIrrelevantElements();
+}
