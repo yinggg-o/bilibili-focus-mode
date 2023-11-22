@@ -1,0 +1,49 @@
+/* styles.css */
+/*For the dynamically loaded DOM elements,
+Hide 
+*/
+/* 
+.bili-feed4-layout,
+.left-entry,
+.bili-header__channel,
+.animated-banner,
+.header-banner__inner,
+.taper-line,
+.slide_ad,
+.reco_lis,
+.right-bottom-banner,
+aside >:right,
+.header-channel{
+  display: none !important;
+} 
+*/
+
+body[data-page-url="https://www.bilibili.com/"] .bili-feed4-layout {
+  display: none !important;
+}
+
+body[data-page-url="https://www.bilibili.com/"] .left-entry {
+  display: none !important;
+}
+
+body[data-page-url="https://www.bilibili.com/"] .bili-header__channel {
+  display: none !important;
+}
+
+body[data-page-url="https://www.bilibili.com/"] .header-channel {
+  display: none !important;
+}
+
+body[data-page-url="https://www.bilibili.com/"] .trending {
+  display: none !important;
+}
+
+body[data-page-url="https://www.bilibili.com/"] .history {
+  display: none !important;
+}
+
+body[data-page-url="https://www.bilibili.com/"] .animated-banner {
+  animation: none !important;
+  transition: none !important;
+  display: none !important;
+}

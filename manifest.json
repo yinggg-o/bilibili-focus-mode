@@ -4,7 +4,6 @@
     "version": "1.0",
     "description": "Hide parts of bilibili that are unneeded/addictive:recommendations,related videos,comments",
     "permissions": [
-        "notifications",
         "storage",
         "tabs",
         "scripting"
@@ -25,11 +24,11 @@
     "content_scripts": [
       {
         "matches": [
-            "https://www.bilibili.com/*",
-            "https://www.bilibili.com/video/*"
+          "*://*.bilibili.com/*",
+          "https://www.bilibili.com/video/*"
         ],
         "js": ["content.js"],
-        "css":["dropdown_banner.css"],
+        "css":["style.css"],
         "run_at": "document_start"
       }
     ]
