@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Bilibili Unhooked",
+    "name": "Bilibi Focus Mode",
     "version": "1.0",
     "description": "一键屏蔽B站所有推荐、热门、广告内容，方便考公考研党沉迷学习使用",
     "permissions": [
